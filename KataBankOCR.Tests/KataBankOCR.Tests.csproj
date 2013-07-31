@@ -44,17 +44,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CheckSumValidator.cs" />
     <Compile Include="DigitParserTests.cs" />
+    <Compile Include="DisplayLine.cs" />
+    <Compile Include="LineParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\KataBankOCR\KataBankOCR.csproj">
-      <Project>{D6C80F9C-C443-41A4-8BB9-4ECFCFB30926}</Project>
-      <Name>KataBankOCR</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
