@@ -13,7 +13,7 @@ namespace KataBankOCR.Tests
         [SetUp]
         public void Before()
         {
-            var file = @" _  _  _  _  _  _  _  _  _ 
+            var filecontents = @" _  _  _  _  _  _  _  _  _ 
 | || || || || || || || || |
 |_||_||_||_||_||_||_||_||_|
                                                       
@@ -60,7 +60,7 @@ namespace KataBankOCR.Tests
   ||_  _|  | _||_|  ||_| _|
                            
 ";
-            Parser = new LineParser(file);
+            Parser = new LineParser(filecontents);
             Parser.Parse();
         }
 
