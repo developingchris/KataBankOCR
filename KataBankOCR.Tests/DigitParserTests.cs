@@ -51,6 +51,10 @@ namespace KataBankOCR.Tests
 |_||_||_||_||_||_||_||_||_|
  _| _| _| _| _| _| _| _| _|
                            
+ _  _  _  _  _  _  _  _  _ 
+|_||_||_||_||_||_||_||_||_|
+{_| _| _| _| _| _| _| _| _|
+                           
     _  _     _  _  _  _  _ 
   | _| _||_||_ |_   ||_||_|
   ||_  _|  | _||_|  ||_| _|
@@ -59,68 +63,6 @@ namespace KataBankOCR.Tests
             Parser = new LineParser(file);
             Parser.Parse();
         }
-
-        //[Test]
-        //public void ZeroLine()
-        //{
-        //    var parser = new LineParser(File);
-        //    parser.Parse();
-        //    Assert.AreEqual(new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0 }, parser.Lines[0]);
-        //}
-
-        //[Test]
-        //public void OnesLine()
-        //{
-        //    var parser = new LineParser(File);
-        //    parser.Parse();
-        //    Assert.AreEqual(new List<int> { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, parser.Lines[1]);
-        //}
-
-        //[Test]
-        //public void TwosLine()
-        //{
-        //    var parser = new LineParser(File);
-        //    parser.Parse();
-        //    Assert.AreEqual(new List<int> { 2, 2, 2, 2, 2, 2, 2, 2, 2 }, parser.Lines[2]);
-        //}
-        //[Test]
-        //public void ThreesLine()
-        //{
-        //    var parser = new LineParser(File);
-        //    parser.Parse();
-        //    Assert.AreEqual(new List<int> { 3, 3, 3, 3, 3, 3, 3, 3, 3 }, parser.Lines[3]);
-        //}
-        //[Test]
-        //public void FoursLine()
-        //{
-        //    var parser = new LineParser(File);
-        //    parser.Parse();
-        //    Assert.AreEqual(new List<int> { 4, 4, 4, 4, 4, 4, 4, 4, 4 }, parser.Lines[4]);
-        //}
-
-        //[Test]
-        //public void FivesLine()
-        //{
-        //    var parser = new LineParser(File);
-        //    parser.Parse();
-        //    Assert.AreEqual(new List<int> { 5, 5, 5, 5, 5, 5, 5, 5, 5 }, parser.Lines[5]);
-        //}
-
-        //[Test]
-        //public void SixLine()
-        //{
-        //    var parser = new LineParser(File);
-        //    parser.Parse();
-        //    Assert.AreEqual(new List<int> { 6, 6, 6, 6, 6, 6, 6, 6, 6 }, parser.Lines[6]);
-        //}
-
-        //[Test]
-        //public void AllDigits()
-        //{
-        //    var parser = new LineParser(File);
-        //    parser.Parse();
-        //    Assert.AreEqual(new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, parser.Lines.Last());
-        //}
 
         [Test]
         public void ZeroLineOutput()
@@ -137,7 +79,13 @@ namespace KataBankOCR.Tests
         [Test]
         public void AllDigitsParsedOnLastLine()
         {
-            Assert.AreEqual("123456789", new DisplayLine(Parser.Lines[10]).ToString());
+            Assert.AreEqual("123456789", new DisplayLine(Parser.Lines[11]).ToString());
+        }
+
+        [Test]
+        public void InvalidDigitIsQuestionMarkAndIllRow()
+        {
+            Assert.AreEqual("?99999999 ILL", new DisplayLine(Parser.Lines[10]).ToString());
         }
 
 

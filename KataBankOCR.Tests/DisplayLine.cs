@@ -25,8 +25,10 @@ namespace KataBankOCR.Tests
                         ill = true;
                         sb.Append("?");
                     }
-
-                    sb.Append(x.ToString());
+                    else
+                    {
+                        sb.Append(x.ToString());
+                    }
                 });
             if (ill)
             {
