@@ -8,12 +8,12 @@ namespace KataBankOCR.Tests
     [TestFixture]
     public class DigitParserTests
     {
-        public string File;
+        public LineParser Parser;
 
         [SetUp]
         public void Before()
         {
-            File = @" _  _  _  _  _  _  _  _  _ 
+            var file = @" _  _  _  _  _  _  _  _  _ 
 | || || || || || || || || |
 |_||_||_||_||_||_||_||_||_|
                                                       
@@ -56,7 +56,8 @@ namespace KataBankOCR.Tests
   ||_  _|  | _||_|  ||_| _|
                            
 ";
-
+            Parser = new LineParser(file);
+            Parser.Parse();
         }
 
         //[Test]
@@ -121,17 +122,24 @@ namespace KataBankOCR.Tests
         //    Assert.AreEqual(new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, parser.Lines.Last());
         //}
 
+        [Test]
+        public void ZeroLineOutput()
+        {
+            Assert.AreEqual("000000000", new DisplayLine(Parser.Lines[0]).ToString());
+        }
 
         [Test]
-        public void OutputFile()
+        public void All1sIsAnErrorLine()
         {
-            var parser = new LineParser(File);
-            parser.Parse();
-
-            Assert.AreEqual("000000000", new DisplayLine(parser.Lines[0]).ToString());
-            Assert.AreEqual("111111111 ERR", new DisplayLine(parser.Lines[1]).ToString());
-            Assert.AreEqual("123456789", new DisplayLine(parser.Lines[10]).ToString());
+           Assert.AreEqual("111111111 ERR", new DisplayLine(Parser.Lines[1]).ToString());
         }
+
+        [Test]
+        public void AllDigitsParsedOnLastLine()
+        {
+            Assert.AreEqual("123456789", new DisplayLine(Parser.Lines[10]).ToString());
+        }
+
 
     }
 }
