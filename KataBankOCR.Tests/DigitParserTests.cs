@@ -9,11 +9,12 @@ namespace KataBankOCR.Tests
     [TestFixture]
     public class DigitParserTests
     {
-        [Test]
-        public void CountLines()
+        public string File;
+
+        [SetUp]
+        public void Before()
         {
-            var file = @"
- _  _  _  _  _  _  _  _  _ 
+            File = @" _  _  _  _  _  _  _  _  _ 
 | || || || || || || || || |
 |_||_||_||_||_||_||_||_||_|
                                                       
@@ -22,9 +23,75 @@ namespace KataBankOCR.Tests
                             _  _  _  _  _  _  _  _  _ 
  _| _| _| _| _| _| _| _| _|
 |_ |_ |_ |_ |_ |_ |_ |_ |_ 
-                           "
 
+ _  _  _  _  _  _  _  _  _ 
+ _| _| _| _| _| _| _| _| _|
+ _| _| _| _| _| _| _| _| _|
+                          |_||_||_||_||_||_||_||_||_|
+  |  |  |  |  |  |  |  |  |
+                           
+ _  _  _  _  _  _  _  _  _ 
+|_ |_ |_ |_ |_ |_ |_ |_ |_ 
+ _| _| _| _| _| _| _| _| _|
+                           
+ _  _  _  _  _  _  _  _  _ 
+|_ |_ |_ |_ |_ |_ |_ |_ |_ 
+|_||_||_||_||_||_||_||_||_|
+                           
+ _  _  _  _  _  _  _  _  _ 
+  |  |  |  |  |  |  |  |  |
+  |  |  |  |  |  |  |  |  |
+                           
+ _  _  _  _  _  _  _  _  _ 
+|_||_||_||_||_||_||_||_||_|
+|_||_||_||_||_||_||_||_||_|
+                           
+ _  _  _  _  _  _  _  _  _ 
+|_||_||_||_||_||_||_||_||_|
+ _| _| _| _| _| _| _| _| _|
+                           
+    _  _     _  _  _  _  _
+  | _| _||_||_ |_   ||_||_|
+  ||_  _|  | _||_|  ||_| _| 
 
+";
+
+        }
+
+        [Test]
+        public void CountLines()
+        {
+           var parser = new LineParser(File);
+           parser.Parse();
+           Assert.AreEqual(10, parser.LineCount);
+        }
+
+        [Test]
+        public void ParseZeroLine()
+        {
+            
+        }
+
+    }
+
+    public class LineParser
+    {
+        private int _lineCount;
+        public string Filecontents { get; set; }
+
+        public LineParser(string filecontents)
+        {
+            Filecontents = filecontents;
+        }
+
+        public void Parse()
+        {
+            var lines = Filecontents.Split('\n');
+            _lineCount = lines.Length / 4;
+        }
+
+        public int LineCount {
+            get { return _lineCount; }
         }
 
     }
