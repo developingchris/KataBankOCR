@@ -121,17 +121,6 @@ namespace KataBankOCR.Tests
             Assert.AreEqual(new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, parser.Lines.Last());
         }
 
-        [Test]
-        public void OnesFailChecksum()
-        {
-            Assert.False(CheckSumValidator.Valid(new List<int> { 1, 1, 1, 1, 1, 1, 1, 1, 1 }));
-        }
-
-        [Test]
-        public void ChecksOut()
-        {
-            Assert.True(CheckSumValidator.Valid(new List<int> { 3, 4, 5, 8, 8, 2, 8, 6, 5 }));
-        }
 
         [Test]
         public void OutputFile()
